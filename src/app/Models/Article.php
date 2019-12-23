@@ -22,7 +22,7 @@ class Article extends Model
     protected $primaryKey = 'id';
     public $timestamps = true;
     // protected $guarded = ['id'];
-    protected $fillable = ['slug', 'title', 'content', 'image', 'status', 'category_id', 'featured', 'date'];
+    protected $fillable = ['slug', 'title', 'lead', 'content', 'image', 'thumbnail', 'status', 'category_id', 'featured', 'date', 'published_at', 'expired_at', 'top', 'recommended'];
     // protected $hidden = [];
     // protected $dates = [];
     protected $casts = [
@@ -66,6 +66,16 @@ class Article extends Model
         return $this->belongsToMany('Backpack\NewsCRUD\app\Models\Tag', 'article_tag');
     }
 
+    public function author()
+    {
+        return $this->belongsto('App\User', 'author_id', 'id');
+    }
+
+    public function comments()
+    {
+        return $this->morphMany('App\Comment', 'commentable');
+    }
+    
     /*
     |--------------------------------------------------------------------------
     | SCOPES
@@ -75,8 +85,48 @@ class Article extends Model
     public function scopePublished($query)
     {
         return $query->where('status', 'PUBLISHED')
-                    ->where('date', '<=', date('Y-m-d'))
-                    ->orderBy('date', 'DESC');
+                    // ->where('date', '<=', date('Y-m-d'))
+                    ->where('published_at', '<=', date('Y-m-d H:i:s'))
+                    ->where(function($query) {
+                        $query->where('expired_at', '>', date('Y-m-d H:i:s') )
+                                ->orWhereNull('expired_at');
+                    });
+                    // ->orderBy('published_at', 'DESC');
+    }
+
+    public function previous()
+    {
+        return self::where('status', 'PUBLISHED')
+                     ->where('published_at', '<=', date('Y-m-d H:i:s'))
+                     ->where(function($query) {
+                        $query->where('expired_at', '>', date('Y-m-d H:i:s') )
+                                ->orWhereNull('expired_at');
+                     })
+                     ->where('id', '<', $this->id)
+                     ->orderBy('id', 'desc')
+                     ->first();
+    }
+    public function next()
+    {
+        return self::where('status', 'PUBLISHED')
+                     ->where('published_at', '<=', date('Y-m-d H:i:s'))
+                     ->where(function($query) {
+                        $query->where('expired_at', '>', date('Y-m-d H:i:s') )
+                                ->orWhereNull('expired_at');
+                     })
+                     ->where('id', '>', $this->id)
+                     ->orderBy('id', 'asc')
+                     ->first();
+    }
+    public static function latest()
+    {
+        return self::where('status', 'PUBLISHED')
+                     ->where('published_at', '<=', date('Y-m-d H:i:s'))
+                     ->where(function($query) {
+                        $query->where('expired_at', '>', date('Y-m-d H:i:s') )
+                                ->orWhereNull('expired_at');
+                     })
+                     ->orderBy('published_at', 'desc');
     }
 
     /*
