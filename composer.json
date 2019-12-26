@@ -1,5 +1,5 @@
 {
-    "name": "backpack/newscrud",
+    "name": "lcloss/newscrud",
     "type": "library",
     "description": "An admin panel for news with categories and tags, using Backpack\\CRUD on Laravel 5.",
     "keywords": [

@@ -18,8 +18,8 @@ class AddStatFieldsToArticlesTable extends Migration
             $table->dateTime('published_at')->default(DB::raw('CURRENT_TIMESTAMP'))->after('date');
             $table->dateTime('expired_at')->nullable()->after('published_at');
             $table->integer('views_count')->default(0)->after('expired_at');
-            $table->integer('comments_count')->default(0)->after('views');
-            $table->boolean('top')->default(0)->after('comments');
+            $table->integer('comments_count')->default(0)->after('views_count');
+            $table->boolean('top')->default(0)->after('comments_count');
             $table->boolean('recommended')->default(0)->after('top');
             $table->integer('facebook_shares')->default(0)->after('recommended');
             $table->integer('twitter_shares')->default(0)->after('facebook_shares');
