@@ -51,7 +51,17 @@ The only PRO of installing it as a package is that you may benefit from updates.
 php artisan migrate
 ```
 
-5) Add NewsCRUD to your routes file:
+5) Add User relationship to Articles:
+```php
+    \\ app\User.php or app\Models\BackpackUser.php
+
+    public function article()
+    {
+        return $this->hasMany('Backpack\NewsCRUD\app\Models\Article', 'author_id');
+    }
+```
+
+6) Add NewsCRUD to your routes file:
 
 ```
 Route::group(['prefix' => config('backpack.base.route_prefix', 'admin'), 'middleware' => ['web', 'auth'], 'namespace' => 'Admin'], function () {
@@ -62,7 +72,7 @@ Route::group(['prefix' => config('backpack.base.route_prefix', 'admin'), 'middle
 });
 ```
 
-6) [optional] Add a menu item for it in resources/views/vendor/backpack/base/inc/sidebar.blade.php or menu.blade.php:
+7) [optional] Add a menu item for it in resources/views/vendor/backpack/base/inc/sidebar.blade.php or menu.blade.php:
 
 ```html
 <li class="nav-item nav-dropdown">
@@ -97,7 +107,17 @@ php artisan vendor:publish --provider="Backpack\NewsCRUD\NewsCRUDServiceProvider
 php artisan migrate
 ```
 
-4) [optional] Add a menu item for it in resources/views/vendor/backpack/base/inc/sidebar.blade.php or menu.blade.php:
+4) Add User relationship to Articles:
+```php
+    \\ app\User.php or app\Models\BackpackUser.php
+
+    public function article()
+    {
+        return $this->hasMany('Backpack\NewsCRUD\app\Models\Article', 'author_id');
+    }
+```
+
+5) [optional] Add a menu item for it in resources/views/vendor/backpack/base/inc/sidebar.blade.php or menu.blade.php:
 
 ```html
 <li class="nav-item nav-dropdown">

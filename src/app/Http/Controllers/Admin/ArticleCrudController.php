@@ -128,6 +128,16 @@ class ArticleCrudController extends CrudController
                 'type' => 'browse',
             ]);
             $this->crud->addField([
+                'label' => 'Author',
+                'type'  => 'select2',
+                'name' => 'author_id',
+                'entity' => 'author',
+                'attribute' => 'name',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6',
+                ],
+            ]);
+            $this->crud->addField([
                 'label' => 'Category',
                 'type' => 'relationship',
                 'name' => 'category_id',
@@ -135,6 +145,9 @@ class ArticleCrudController extends CrudController
                 'attribute' => 'name',
                 'inline_create' => true,
                 'ajax' => true,
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6',
+                ],
             ]);
             $this->crud->addField([
                 'label' => 'Tags',
