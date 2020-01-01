@@ -14,7 +14,7 @@ class AddExtrasToArticlesTable extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->text('extras')->nullable()->after('resume');
+            $table->text('extras')->nullable()->after('date');
         });
     }
 
