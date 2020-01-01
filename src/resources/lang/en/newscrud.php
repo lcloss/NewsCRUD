@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'meta.title'                 => 'Meta Title',
-    'meta.description'           => 'Meta Description',
-    'meta.keywords'              => 'Meta Keywords',
+    'meta_title'                 => 'Meta Title',
+    'meta_description'           => 'Meta Description',
+    'meta_keywords'              => 'Meta Keywords',
 
 ];
