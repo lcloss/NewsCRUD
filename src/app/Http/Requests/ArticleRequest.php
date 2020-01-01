@@ -27,6 +27,8 @@ class ArticleRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
             'slug' => 'unique:articles,slug,'.\Request::get('id'),
             'content' => 'required|min:2',
             'date' => 'required|date',
+            'published_at' => 'required|date',
+            'expired_at' => 'after:published_at|date|nullable',
             'status' => 'required',
             'category_id' => 'required',
         ];
