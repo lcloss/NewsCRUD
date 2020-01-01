@@ -2,6 +2,7 @@
 
 namespace Backpack\NewsCRUD\app\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\DB;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\NewsCRUD\app\Http\Requests\ArticleRequest;
 
