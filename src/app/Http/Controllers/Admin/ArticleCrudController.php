@@ -117,6 +117,12 @@ class ArticleCrudController extends CrudController
                 'default' => date('Y-m-d'),
             ]);
             $this->crud->addField([
+                'name' => 'resume',
+                'label' => 'Resume',
+                'type' => 'ckeditor',
+                'placeholder' => 'Make a resume of your article here',
+            ]);
+            $this->crud->addField([
                 'name' => 'content',
                 'label' => 'Content',
                 'type' => 'ckeditor',
