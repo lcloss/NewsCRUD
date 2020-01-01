@@ -30,6 +30,7 @@ class ArticleRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
             'date' => 'required|date',
             'published_at' => 'required|date',
             'expired_at' => 'after:published_at|date|nullable',
+            'author_id' => 'required',
             'status' => 'required',
             'category_id' => 'required',
         ];
