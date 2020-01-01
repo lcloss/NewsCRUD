@@ -116,6 +116,16 @@ class ArticleCrudController extends CrudController
                 'type' => 'date',
                 'default' => date('Y-m-d'),
             ]);
+            $this->crud->addColumn([
+                'name'  => 'published_at',
+                'label' => 'Published time',
+                'type'  => 'datetime'
+            ]);
+            $this->crud->addColumn([
+                'name'  => 'expired_at',
+                'label' => 'Expiration time',
+                'type'  => 'datetime'
+            ]);
             $this->crud->addField([
                 'name' => 'content',
                 'label' => 'Content',
@@ -125,6 +135,11 @@ class ArticleCrudController extends CrudController
             $this->crud->addField([
                 'name' => 'image',
                 'label' => 'Image',
+                'type' => 'browse',
+            ]);
+            $this->crud->addField([
+                'name' => 'thumbnail',
+                'label' => 'Thumbnail',
                 'type' => 'browse',
             ]);
             $this->crud->addField([
