@@ -174,6 +174,16 @@ class ArticleCrudController extends CrudController
                     'class' => 'form-group col-md-4',
                 ],
             ]);
+            $this->crud->addColumn([
+                'name'  => 'top',
+                'label' => 'On top',
+                'type'  => 'check'
+            ]);
+            $this->crud->addColumn([
+                'name'  => 'recommended',
+                'label' => 'Recommended',
+                'type'  => 'check'
+            ]);
         });
     }
 
