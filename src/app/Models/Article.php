@@ -49,6 +49,28 @@ class Article extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+    public static function first()
+    {
+        return self::orderBy('id', 'asc')
+                     ->first();
+    }
+    public function previous()
+    {
+        return self::where('id', '<', $this->id)
+                     ->orderBy('id', 'desc')
+                     ->first();
+    }
+    public function next()
+    {
+        return self::where('id', '>', $this->id)
+                     ->orderBy('id', 'asc')
+                     ->first();
+    }
+    public static function latest()
+    {
+        return self::orderBy('id', 'desc')
+                     ->first();
+    }
 
     /*
     |--------------------------------------------------------------------------
