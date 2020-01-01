@@ -28,6 +28,9 @@ class NewsCRUDServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // publish lang files
+        $this->publishes([__DIR__.'/resources/lang' => resource_path('lang/vendor/backpack')], 'lang');
+        
         // publish migrations
         $this->publishes([__DIR__.'/database/migrations' => database_path('migrations')], 'migrations');
     }
