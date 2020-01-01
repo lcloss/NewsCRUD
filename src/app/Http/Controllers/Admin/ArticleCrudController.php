@@ -211,6 +211,16 @@ class ArticleCrudController extends CrudController
                 'label' => 'Featured item',
                 'type' => 'checkbox',
             ]);
+            $this->crud->addColumn([
+                'name'  => 'top',
+                'label' => 'On top',
+                'type'  => 'check'
+            ]);
+            $this->crud->addColumn([
+                'name'  => 'recommended',
+                'label' => 'Recommended',
+                'type'  => 'check'
+            ]);
         });
     }
 
