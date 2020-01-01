@@ -60,6 +60,8 @@ class ArticleCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->operation(['create', 'update'], function () {
+            DB::connection()->getDoctrineSchemaManager()->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
+            
             $this->crud->setValidation(ArticleRequest::class);
 
             $this->crud->addField([
