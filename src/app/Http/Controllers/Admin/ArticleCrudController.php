@@ -93,11 +93,24 @@ class ArticleCrudController extends CrudController
                 'type' => 'browse',
             ]);
             $this->crud->addField([
+                'label' => 'Author',
+                'type'  => 'select2',
+                'name' => 'author_id',
+                'entity' => 'author',
+                'attribute' => 'name',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6',
+                ],
+            ]);
+            $this->crud->addField([
                 'label' => 'Category',
                 'type' => 'select2',
                 'name' => 'category_id',
                 'entity' => 'category',
                 'attribute' => 'name',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6',
+                ],
             ]);
             $this->crud->addField([
                 'label' => 'Tags',
