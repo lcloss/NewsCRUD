@@ -22,7 +22,7 @@ class Article extends Model
     protected $primaryKey = 'id';
     public $timestamps = true;
     // protected $guarded = ['id'];
-    protected $fillable = ['slug', 'resume', 'title', 'content', 'image', 'status', 'category_id', 'featured', 'date', 'published_at', 'expired_at'];
+    protected $fillable = ['slug', 'resume', 'title', 'content', 'image', 'status', 'author_id', 'category_id', 'featured', 'date', 'published_at', 'expired_at'];
     // protected $hidden = [];
     // protected $dates = [];
     protected $casts = [
@@ -64,6 +64,11 @@ class Article extends Model
     public function tags()
     {
         return $this->belongsToMany('Backpack\NewsCRUD\app\Models\Tag', 'article_tag');
+    }
+
+    public function author()
+    {
+        return $this->belongsto('App\Models\BackpackUser', 'author_id', 'id');
     }
 
     /*

@@ -28,6 +28,7 @@ class ArticleRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
             'resume' => 'required|min:2',
             'content' => 'required|min:2',
             'date' => 'required|date',
+            'author_id' => 'required',
             'published_at' => 'required|date',
             'expired_at' => 'after:published_at|date|nullable',
             'status' => 'required',
