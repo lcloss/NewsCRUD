@@ -22,7 +22,7 @@ class Article extends Model
     protected $primaryKey = 'id';
     public $timestamps = true;
     // protected $guarded = ['id'];
-    protected $fillable = ['slug', 'resume', 'title', 'content', 'image', 'status', 'category_id', 'featured', 'date'];
+    protected $fillable = ['slug', 'resume', 'title', 'content', 'image', 'status', 'category_id', 'featured', 'date', 'extras'];
     // protected $hidden = [];
     // protected $dates = [];
     protected $casts = [

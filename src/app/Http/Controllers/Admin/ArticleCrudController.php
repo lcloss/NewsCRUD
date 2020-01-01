@@ -111,6 +111,25 @@ class ArticleCrudController extends CrudController
                 // 'disabled' => 'disabled'
             ]);
             $this->crud->addField([
+                'name' => 'meta_title',
+                'label' => trans('backpack::newscrud.meta_title'),
+                'fake' => true,
+                'store_in' => 'extras',
+            ]);
+            $this->crud->addField([
+                'name' => 'meta_description',
+                'label' => trans('backpack::newscrud.meta_description'),
+                'fake' => true,
+                'store_in' => 'extras',
+            ]);
+            $this->crud->addField([
+                'name' => 'meta_keywords',
+                'type' => 'textarea',
+                'label' => trans('backpack::newscrud.meta_keywords'),
+                'fake' => true,
+                'store_in' => 'extras',
+            ]);
+            $this->crud->addField([
                 'name' => 'date',
                 'label' => 'Date',
                 'type' => 'date',
