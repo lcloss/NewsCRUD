@@ -46,6 +46,16 @@ class ArticleCrudController extends CrudController
                 'type' => 'check',
             ]);
             $this->crud->addColumn([
+                'name'  => 'top',
+                'label' => 'On top',
+                'type'  => 'check'
+            ]);
+            $this->crud->addColumn([
+                'name'  => 'recommended',
+                'label' => 'Recommended',
+                'type'  => 'check'
+            ]);
+            $this->crud->addColumn([
                 'label' => 'Category',
                 'type' => 'select',
                 'name' => 'category_id',
