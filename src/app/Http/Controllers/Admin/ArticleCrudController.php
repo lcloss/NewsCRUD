@@ -36,9 +36,14 @@ class ArticleCrudController extends CrudController
         $this->crud->operation('list', function () {
             $this->crud->addColumn('title');
             $this->crud->addColumn([
-                'name' => 'date',
-                'label' => 'Date',
-                'type' => 'date',
+                'name'  => 'published_at',
+                'label' => 'Published time',
+                'type'  => 'datetime'
+            ]);
+            $this->crud->addColumn([
+                'name'  => 'expired_at',
+                'label' => 'Expiration time',
+                'type'  => 'datetime'
             ]);
             $this->crud->addColumn('status');
             $this->crud->addColumn([
@@ -117,18 +122,20 @@ class ArticleCrudController extends CrudController
                 'default' => date('Y-m-d'),
             ]);
             $this->crud->addField([
-                'name'  => 'published_at',
+                'name' => 'published_at',
                 'label' => 'Published time',
-                'type'  => 'datetime',
+                'type' => 'datetime',
                 'default' => date('Y-m-d H:i:s'),
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-6',
                 ],
             ]);
             $this->crud->addField([
-                'name'  => 'expired_at',
+                'name' => 'expired_at',
                 'label' => 'Expiration time',
-                'type'  => 'datetime',
+                'type' => 'datetime_picker',
+                'allows_null' => true,
+                'hint' => 'Leave blank for no expiration time',
                 'default' => '',
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-6',
