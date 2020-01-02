@@ -81,6 +81,16 @@ class ArticleCrudController extends CrudController
                 'type' => 'date',
                 'default' => date('Y-m-d'),
             ]);
+            $this->crud->addColumn([
+                'name'  => 'published_at',
+                'label' => 'Published time',
+                'type'  => 'datetime'
+            ]);
+            $this->crud->addColumn([
+                'name'  => 'expired_at',
+                'label' => 'Expiration time',
+                'type'  => 'datetime'
+            ]);
             $this->crud->addField([
                 'name' => 'content',
                 'label' => 'Content',
