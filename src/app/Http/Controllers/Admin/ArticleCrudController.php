@@ -119,12 +119,20 @@ class ArticleCrudController extends CrudController
             $this->crud->addField([
                 'name'  => 'published_at',
                 'label' => 'Published time',
-                'type'  => 'datetime'
+                'type'  => 'datetime',
+                'default' => date('Y-m-d H:i:s'),
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6',
+                ],
             ]);
             $this->crud->addField([
                 'name'  => 'expired_at',
                 'label' => 'Expiration time',
-                'type'  => 'datetime'
+                'type'  => 'datetime',
+                'default' => '',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6',
+                ],
             ]);
             $this->crud->addField([
                 'name' => 'content',
