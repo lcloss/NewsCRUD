@@ -95,6 +95,16 @@ class Article extends Model
         return $this->title;
     }
 
+    public function getImageAttribute($image)
+    {
+        return asset($image);
+    }
+
+    public function getThumbnailAttribute($thumbnail)
+    {
+        return asset($thumbnail);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | MUTATORS
