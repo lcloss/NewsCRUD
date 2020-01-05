@@ -126,16 +126,25 @@ class ArticleCrudController extends CrudController
                 'name' => 'featured',
                 'label' => 'Featured item',
                 'type' => 'checkbox',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-4',
+                ],
             ]);
-            $this->crud->addColumn([
+            $this->crud->addField([
                 'name'  => 'top',
                 'label' => 'On top',
-                'type'  => 'check'
+                'type'  => 'checkbox',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-4',
+                ],
             ]);
-            $this->crud->addColumn([
+            $this->crud->addField([
                 'name'  => 'recommended',
                 'label' => 'Recommended',
-                'type'  => 'check'
+                'type'  => 'checkbox',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-4',
+                ],
             ]);
         });
     }
