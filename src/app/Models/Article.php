@@ -51,24 +51,24 @@ class Article extends Model
     */
     public static function first()
     {
-        return self::orderBy('id', 'asc')
+        return self::published()->orderBy('published_at', 'asc')
                      ->first();
     }
     public function previous()
     {
-        return self::where('id', '<', $this->id)
-                     ->orderBy('id', 'desc')
+        return self::published()->where('published_at', '<', $this->published_at)
+                     ->orderBy('published_at', 'desc')
                      ->first();
     }
     public function next()
     {
-        return self::where('id', '>', $this->id)
-                     ->orderBy('id', 'asc')
+        return self::published()->where('published_at', '>', $this->published_at)
+                     ->orderBy('published_at', 'asc')
                      ->first();
     }
     public static function latest()
     {
-        return self::orderBy('id', 'desc')
+        return self::published()->orderBy('published_at', 'desc')
                      ->first();
     }
 
