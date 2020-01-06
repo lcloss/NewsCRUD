@@ -105,6 +105,15 @@ class Article extends Model
         return asset($thumbnail);
     }
 
+    public function getThumbOrImageAttribute()
+    {
+        if ( $this->getOriginal('thumbnail') != '' ) {
+            return $this->thumbnail;
+        }
+
+        return $this->image;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | MUTATORS
