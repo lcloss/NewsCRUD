@@ -47,14 +47,11 @@ class ArticleCrudController extends CrudController
                 'type' => 'check',
             ]);
             $this->crud->addColumn([
-                'name'  => 'top',
-                'label' => 'On top',
-                'type'  => 'check'
-            ]);
-            $this->crud->addColumn([
-                'name'  => 'recommended',
-                'label' => 'Recommended',
-                'type'  => 'check'
+                'label' => 'Section',
+                'type'  => 'select',
+                'name'  => 'section_id',
+                'entity' => 'sections',
+                'attribute' => 'label'
             ]);
             $this->crud->addColumn([
                 'label' => 'Category',
@@ -157,6 +154,14 @@ class ArticleCrudController extends CrudController
                 'ajax' => true,
             ]);
             $this->crud->addField([
+                'label' => 'Sections',
+                'type' => 'select2_multiple',
+                'name' => 'sections', // the method that defines the relationship in your Model
+                'entity' => 'sections', // the method that defines the relationship in your Model
+                'attribute' => 'label', // foreign key attribute that is shown to user
+                'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
+            ]);
+            $this->crud->addField([
                 'name' => 'status',
                 'label' => 'Status',
                 'type' => 'enum',
@@ -165,22 +170,6 @@ class ArticleCrudController extends CrudController
                 'name' => 'featured',
                 'label' => 'Featured item',
                 'type' => 'checkbox',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-4',
-                ],
-            ]);
-            $this->crud->addField([
-                'name'  => 'top',
-                'label' => 'On top',
-                'type'  => 'checkbox',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-4',
-                ],
-            ]);
-            $this->crud->addField([
-                'name'  => 'recommended',
-                'label' => 'Recommended',
-                'type'  => 'checkbox',
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-4',
                 ],

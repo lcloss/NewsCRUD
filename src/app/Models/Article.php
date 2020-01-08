@@ -66,6 +66,11 @@ class Article extends Model
         return $this->belongsToMany('Backpack\NewsCRUD\app\Models\Tag', 'article_tag');
     }
 
+    public function sections()
+    {
+        return $this->morphToMany('Backpack\NewsCRUD\app\Models\Section', 'sectionable');
+    }
+    
     /*
     |--------------------------------------------------------------------------
     | SCOPES
