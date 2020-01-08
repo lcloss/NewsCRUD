@@ -93,6 +93,11 @@ class Article extends Model
         return $this->belongsto('App\Models\BackpackUser', 'author_id', 'id');
     }
 
+    public function sections()
+    {
+        return $this->morphToMany('Backpack\NewsCRUD\app\Models\Section', 'sectionable');
+    }
+    
     /*
     |--------------------------------------------------------------------------
     | SCOPES
