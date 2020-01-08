@@ -174,22 +174,6 @@ class ArticleCrudController extends CrudController
                     'class' => 'form-group col-md-4',
                 ],
             ]);
-            $this->crud->addField([
-                'name'  => 'top',
-                'label' => 'On top',
-                'type'  => 'checkbox',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-4',
-                ],
-            ]);
-            $this->crud->addField([
-                'name'  => 'recommended',
-                'label' => 'Recommended',
-                'type'  => 'checkbox',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-4',
-                ],
-            ]);
         });
     }
 
