@@ -15,6 +15,7 @@ class ArticleCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\BulkDeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\FetchOperation;
 
     public function setup()
     {
@@ -23,7 +24,7 @@ class ArticleCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel("Backpack\NewsCRUD\app\Models\Article");
+        $this->crud->setModel(\Backpack\NewsCRUD\app\Models\Article::class);
         $this->crud->setRoute(config('backpack.base.route_prefix', 'admin').'/article');
         $this->crud->setEntityNameStrings('article', 'articles');
 
@@ -58,7 +59,41 @@ class ArticleCrudController extends CrudController
                 'name' => 'category_id',
                 'entity' => 'category',
                 'attribute' => 'name',
+                'wrapper'   => [
+                    'href' => function ($crud, $column, $entry, $related_key) {
+                        return backpack_url('category/'.$related_key.'/show');
+                    },
+                ],
             ]);
+            $this->crud->addColumn('tags');
+
+            $this->crud->addFilter([ // select2 filter
+                'name' => 'category_id',
+                'type' => 'select2',
+                'label'=> 'Category',
+            ], function () {
+                return \Backpack\NewsCRUD\app\Models\Category::all()->keyBy('id')->pluck('name', 'id')->toArray();
+            }, function ($value) { // if the filter is active
+                $this->crud->addClause('where', 'category_id', $value);
+            });
+
+            $this->crud->addFilter([ // select2_multiple filter
+                'name' => 'tags',
+                'type' => 'select2_multiple',
+                'label'=> 'Tags',
+            ], function () {
+                return \Backpack\NewsCRUD\app\Models\Tag::all()->keyBy('id')->pluck('name', 'id')->toArray();
+            }, function ($values) { // if the filter is active
+                $this->crud->query = $this->crud->query->whereHas('tags', function ($q) use ($values) {
+                    foreach (json_decode($values) as $key => $value) {
+                        if ($key == 0) {
+                            $q->where('tags.id', $value);
+                        } else {
+                            $q->orWhere('tags.id', $value);
+                        }
+                    }
+                });
+            });
         });
 
         /*
@@ -101,17 +136,29 @@ class ArticleCrudController extends CrudController
             ]);
             $this->crud->addField([
                 'label' => 'Category',
-                'type' => 'select2',
+                'type' => 'relationship',
                 'name' => 'category_id',
                 'entity' => 'category',
                 'attribute' => 'name',
+                'inline_create' => true,
+                'ajax' => true,
             ]);
             $this->crud->addField([
                 'label' => 'Tags',
-                'type' => 'select2_multiple',
+                'type' => 'relationship',
                 'name' => 'tags', // the method that defines the relationship in your Model
                 'entity' => 'tags', // the method that defines the relationship in your Model
                 'attribute' => 'name', // foreign key attribute that is shown to user
+                'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
+                'inline_create' => ['entity' => 'tag'],
+                'ajax' => true,
+            ]);
+            $this->crud->addField([
+                'label' => 'Sections',
+                'type' => 'select2_multiple',
+                'name' => 'sections', // the method that defines the relationship in your Model
+                'entity' => 'sections', // the method that defines the relationship in your Model
+                'attribute' => 'label', // foreign key attribute that is shown to user
                 'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
             ]);
             $this->crud->addField([
@@ -136,5 +183,23 @@ class ArticleCrudController extends CrudController
                 ],
             ]);
         });
+    }
+
+    /**
+     * Respond to AJAX calls from the select2 with entries from the Category model.
+     * @return JSON
+     */
+    public function fetchCategory()
+    {
+        return $this->fetch(\Backpack\NewsCRUD\app\Models\Category::class);
+    }
+
+    /**
+     * Respond to AJAX calls from the select2 with entries from the Tag model.
+     * @return JSON
+     */
+    public function fetchTags()
+    {
+        return $this->fetch(\Backpack\NewsCRUD\app\Models\Tag::class);
     }
 }
