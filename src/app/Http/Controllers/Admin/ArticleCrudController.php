@@ -162,6 +162,14 @@ class ArticleCrudController extends CrudController
                 'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
             ]);
             $this->crud->addField([
+                'label' => 'Sections',
+                'type' => 'select2_multiple',
+                'name' => 'sections', // the method that defines the relationship in your Model
+                'entity' => 'sections', // the method that defines the relationship in your Model
+                'attribute' => 'label', // foreign key attribute that is shown to user
+                'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
+            ]);
+            $this->crud->addField([
                 'name' => 'status',
                 'label' => 'Status',
                 'type' => 'enum',

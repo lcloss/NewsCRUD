@@ -14,7 +14,7 @@ class CreateSectionablesTable extends Migration
     public function up()
     {
         Schema::create('sectionables', function (Blueprint $table) {
-            $table->integer('section_id');
+            $table->bigIncrements('section_id');
             $table->integer('sectionable_id');
             $table->string('sectionable_type');
             $table->nullableTimestamps();
