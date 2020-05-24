@@ -90,7 +90,7 @@ class Article extends Model
 
     public function author()
     {
-        return $this->belongsto('App\Models\BackpackUser', 'author_id', 'id');
+        return $this->belongsto('App\User', 'author_id', 'id');
     }
 
     public function sections()
