@@ -14,7 +14,7 @@ class AddSocialAndScoreToArticlesTable extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->integer('facebook_shares')->default(0)->after('date');
+            $table->integer('facebook_shares')->default(0)->after('views_count');
             $table->integer('twitter_shares')->default(0)->after('facebook_shares');
             $table->integer('linkedin_shares')->default(0)->after('twitter_shares');
             $table->integer('score')->default(0)->after('linkedin_shares');
