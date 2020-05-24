@@ -5,6 +5,38 @@ All Notable changes to `NewsCRUD` will be documented in this file.
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
 -------------
+IMPORTANT
+-------------
+
+We no longer use this file to keep track of changes, after version 4.0.0. Please see our repo's Releases tab, on Github - https://github.com/Laravel-Backpack/NewsCRUD/releases
+
+-------------
+
+## 4.0.0 - 2020-05-06
+
+### Added
+- support for Backpack 4.1
+- column anchors to CategoryCRUD;
+- filters to ArticleCRUD;
+- relationship columns to ArticleCRUD, along with inlineCreate for both Category and Tags;
+
+### Removed
+- support for Backpack 4.0
+
+
+-------------
+
+## 3.0.3 - 2020-03-05
+
+### Changed
+- upgraded PHPUnit;
+- Added Release Drafter Github Probot;
+
+
+## 3.0.2 - 2020-03-05
+
+### Added
+- support for Laravel 7;
 
 
 ## 3.0.1 - 2019-12-17
